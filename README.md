@@ -1,4 +1,4 @@
-# DouyinLiveExporter
+# DouyinLivePhotoExporter
 
 Windows 下的抖音评论实况图导出工具。从已开启 Root ADB 的 MuMu 模拟器读取新保存的缓存，生成苹果 Live Photo 配对资源；也支持转换本地 MP4/MOV。
 
@@ -24,7 +24,7 @@ Windows 下的抖音评论实况图导出工具。从已开启 Root ADB 的 MuMu
 | 运行已构建的 EXE | 无需另装 Python 或 FFmpeg；使用可写入的程序目录 |
 | 直接运行 Python 源码 | Python 3.11+，先安装 `build/requirements.txt` 中的依赖 |
 
-GitHub 源码仓库不包含 EXE。下载源码 ZIP 后，需要按下方「开发与构建」安装依赖并运行源码，或自行构建 EXE。当前版本为 v1，构建目录为 `dist/DouyinLiveExporter_v1/`。
+GitHub 源码仓库不包含 EXE。下载源码 ZIP 后，需要按下方「开发与构建」安装依赖并运行源码，或自行构建 EXE。当前版本为 v1，构建目录为 `dist/DouyinLivePhotoExporter_v1/`。
 
 ### 首次配置 MuMu
 
@@ -40,14 +40,14 @@ ADB 端口位置可参考 [MuMu 官方 ADB 连接说明](https://mumu.163.com/he
 ### 每次从模拟器导出的正确顺序
 
 1. **先启动 MuMu 安卓实例**，确认抖音可以正常打开。
-2. 运行程序：双击构建后的 `dist/DouyinLiveExporter_v1/DouyinLiveExporter.exe`；源码运行方式见下方。
+2. 运行程序：双击构建后的 `dist/DouyinLivePhotoExporter_v1/DouyinLivePhotoExporter.exe`；源码运行方式见下方。
 3. 输入 **1** 并回车。程序会寻找 ADB、连接模拟器、尝试 Root，然后列出已有缓存。
 4. **等窗口显示「忽略已有文件: …」和「监听中...」后，再到模拟器内操作。**
 5. 在抖音中打开评论区的 **Live／实况图片**，等待内容加载，然后长按并保存。仅浏览图片、保存普通静态图片或在真实手机上保存，不会完成这条导出流程。
 6. 等待控制台显示「苹果 Live Photo 已生成并通过文件验证」，再查看输出目录。转换期间不要关闭程序和模拟器。
 7. 将同一目录内的 HEIC/JPG 和 MOV 配对导入 iPhone，具体方法见下文。
 
-EXE 的输出在 **EXE 旁的 `DouyinLive/AppleLive`**；源码运行时输出在 **项目根目录的 `DouyinLive/AppleLive`**。程序只在检测到新文件并成功转换后生成结果，不是启动后立即生成。
+EXE 的输出在 **EXE 旁的 `DouyinLivePhotoExporter/AppleLive`**；源码运行时输出在 **项目根目录的 `DouyinLivePhotoExporter/AppleLive`**。程序只在检测到新文件并成功转换后生成结果，不是启动后立即生成。
 
 **启动监听时已有的缓存会被忽略。** 必须先开始监听，再保存目标实况图；如果抖音复用了旧缓存文件名，再次保存同一张图也可能不触发。可以先换一张未保存过的实况图确认流程。菜单 **2** 会删除监听目录内的历史缓存，不是单纯刷新列表；确需清理时，先停止监听、确认需要的文件已备份，再执行清理并重新开始监听。
 
@@ -91,7 +91,7 @@ HEIC/JPG 与同名 MOV 是一张 Live Photo 的配对资源，需要通过支持
 ## 输出与画质
 
 ```text
-DouyinLive/
+DouyinLivePhotoExporter/
   originals/                原始缓存备份，以内容哈希命名
   AppleLive/
     IMG_0001_唯一编号/
@@ -113,7 +113,7 @@ DouyinLive/
 |---|---|---|
 | delete_after_export | false | 成功生成配对文件后是否删除远端缓存 |
 | scan_interval | 2 | 扫描间隔（秒） |
-| output_folder | DouyinLive | 输出目录，相对程序目录解析 |
+| output_folder | DouyinLivePhotoExporter | 输出目录，相对程序目录解析 |
 | live_duration | 3.0 | 最多截取的秒数 |
 | adb_path | 空字符串 | 自动寻找；可手动覆盖 |
 | photo_format | heic | heic 或 jpeg |
@@ -124,11 +124,11 @@ DouyinLive/
 以下命令在 EXE 所在目录执行：
 
 ```powershell
-.\DouyinLiveExporter.exe --find-adb
-.\DouyinLiveExporter.exe --convert ".\input.mp4"
-.\DouyinLiveExporter.exe --convert ".\input.mp4" --cover ".\cover.jpg" --output ".\output"
-.\DouyinLiveExporter.exe --convert ".\input.mp4" --photo-format jpeg --name-style original
-.\DouyinLiveExporter.exe --verify ".\IMG_0001.HEIC" ".\IMG_0001.MOV"
+.\DouyinLivePhotoExporter.exe --find-adb
+.\DouyinLivePhotoExporter.exe --convert ".\input.mp4"
+.\DouyinLivePhotoExporter.exe --convert ".\input.mp4" --cover ".\cover.jpg" --output ".\output"
+.\DouyinLivePhotoExporter.exe --convert ".\input.mp4" --photo-format jpeg --name-style original
+.\DouyinLivePhotoExporter.exe --verify ".\IMG_0001.HEIC" ".\IMG_0001.MOV"
 ```
 
 ## 开发与构建
@@ -138,11 +138,11 @@ DouyinLive/
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r build\requirements.txt
-.\.venv\Scripts\python.exe src\DouyinLiveExporter.py
+.\.venv\Scripts\python.exe src\DouyinLivePhotoExporter.py
 .\build\build.bat
 ```
 
-构建输出位于 `dist/DouyinLiveExporter_v1/`，包含 EXE、默认配置及文档。运行 EXE 不需要另装 Python 或 FFmpeg；ADB 使用 MuMu 自带版本。
+构建输出位于 `dist/DouyinLivePhotoExporter_v1/`，包含 EXE、默认配置及文档。运行 EXE 不需要另装 Python 或 FFmpeg；ADB 使用 MuMu 自带版本。
 
 开发者检查：
 

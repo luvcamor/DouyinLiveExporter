@@ -1,7 +1,7 @@
 {
     "delete_after_export": false,
     "scan_interval": 2,
-    "output_folder": "DouyinLive",
+    "output_folder": "DouyinLivePhotoExporter",
     "live_duration": 3.0,
     "adb_path": "",
     "photo_format": "heic",

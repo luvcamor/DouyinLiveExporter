@@ -3,7 +3,7 @@ build/*
 !build/build.bat
 !build/requirements.txt
 dist/
-DouyinLive/
+DouyinLivePhotoExporter/
 *.log
 .venv/
 *.spec
