@@ -1,0 +1,17 @@
+__pycache__/
+build/*
+!build/build.bat
+!build/requirements.txt
+dist/
+DouyinLive/
+*.log
+.venv/
+*.spec
+.verification/
+local-data/
+.env
+.env.*
+*.pem
+*.key
+*.p12
+.pytest_cache/
