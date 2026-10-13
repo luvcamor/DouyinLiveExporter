@@ -162,7 +162,7 @@ def _positive_seconds(value):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description="抖音缓存 / 本地视频转苹果 Live Photo")
-    parser.add_argument('--version', action='version', version='DouyinLiveExporter Apple-v4-AutoADB')
+    parser.add_argument('--version', action='version', version='DouyinLiveExporter v1')
     parser.add_argument('--find-adb', action='store_true', help='显示自动找到的 ADB 路径，不连接或修改模拟器')
     parser.add_argument('--photo-format', choices=['heic', 'jpeg'], default=CONFIG.get('photo_format', 'heic'))
     parser.add_argument('--name-style', choices=['camera', 'original'], default=CONFIG.get('name_style', 'camera'))
@@ -190,7 +190,7 @@ def main(argv=None):
         print("操作失败:", exc)
         return 1
     while True:
-        print("\nDouyinLiveExporter Apple-v4（HEIC + MOV / 自动寻找 MuMu ADB）")
+        print("\nDouyinLiveExporter v1（HEIC + MOV / 自动寻找 MuMu ADB）")
         print("\n1. 监听并导出苹果 Live Photo\n2. 清理模拟器历史缓存\n3. 退出\n4. 转换已有 MP4/MOV")
         choice = input("选择: ")
         try:

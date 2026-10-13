@@ -344,7 +344,7 @@ def convert_live_photo(source, output_dir, cover=None, max_duration=3.0, photo_f
         report = verify_live_photo(photo, mov)
         _run(ffmpeg, ['-xerror', '-i', mov, '-map', '0:v:0', '-map', '0:a:0?', '-f', 'null', '-'])
         report.update({'source': source.name, 'cover_source': Path(cover).name if cover else 'video frame',
-                       'exporter_version': 'Apple-v4-AutoADB', 'photo_format': photo_format,
+                       'exporter_version': 'v1', 'photo_format': photo_format,
                        'still_time_seconds': still_ticks / TIMESCALE,
                        'max_duration_seconds': max_duration,
                        'device_tested': False})

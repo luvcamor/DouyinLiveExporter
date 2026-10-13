@@ -24,7 +24,7 @@ Windows 下的抖音评论实况图导出工具。从已开启 Root ADB 的 MuMu
 | 运行已构建的 EXE | 无需另装 Python 或 FFmpeg；使用可写入的程序目录 |
 | 直接运行 Python 源码 | Python 3.11+，先安装 `build/requirements.txt` 中的依赖 |
 
-GitHub 源码仓库不包含 EXE。下载源码 ZIP 后，需要按下方「开发与构建」安装依赖并运行源码，或自行构建 EXE。当前构建目录仍名为 `AppleLivePhoto_v4`，这是历史内部命名，不影响仓库 v1 版本使用。
+GitHub 源码仓库不包含 EXE。下载源码 ZIP 后，需要按下方「开发与构建」安装依赖并运行源码，或自行构建 EXE。当前版本为 v1，构建目录为 `dist/DouyinLiveExporter_v1/`。
 
 ### 首次配置 MuMu
 
@@ -40,7 +40,7 @@ ADB 端口位置可参考 [MuMu 官方 ADB 连接说明](https://mumu.163.com/he
 ### 每次从模拟器导出的正确顺序
 
 1. **先启动 MuMu 安卓实例**，确认抖音可以正常打开。
-2. 运行程序：双击构建后的 `dist/AppleLivePhoto_v4/DouyinLiveExporter.exe`；源码运行方式见下方。
+2. 运行程序：双击构建后的 `dist/DouyinLiveExporter_v1/DouyinLiveExporter.exe`；源码运行方式见下方。
 3. 输入 **1** 并回车。程序会寻找 ADB、连接模拟器、尝试 Root，然后列出已有缓存。
 4. **等窗口显示「忽略已有文件: …」和「监听中...」后，再到模拟器内操作。**
 5. 在抖音中打开评论区的 **Live／实况图片**，等待内容加载，然后长按并保存。仅浏览图片、保存普通静态图片或在真实手机上保存，不会完成这条导出流程。
@@ -142,7 +142,7 @@ python -m venv .venv
 .\build\build.bat
 ```
 
-构建输出位于 `dist/AppleLivePhoto_v4/`，包含 EXE、默认配置及文档。运行 EXE 不需要另装 Python 或 FFmpeg；ADB 使用 MuMu 自带版本。
+构建输出位于 `dist/DouyinLiveExporter_v1/`，包含 EXE、默认配置及文档。运行 EXE 不需要另装 Python 或 FFmpeg；ADB 使用 MuMu 自带版本。
 
 开发者检查：
 
